@@ -4,7 +4,7 @@ describe('Verify validation text', () => {
 	  cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
   })
     
-  it('Không nhập tên đăng nhập', () => {
+  it('Verify that login without entering username', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#password').type('text_pass')
     cy.wait(2000)
@@ -15,7 +15,7 @@ describe('Verify validation text', () => {
     cy.wait(2000)
   })
     
-  it('Không nhập password', () => {
+  it('Verify that login without entering password', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('text_user@gmail.com')
     cy.wait(2000)
@@ -26,7 +26,7 @@ describe('Verify validation text', () => {
     cy.wait(2000)
   })
     
-  it('Không nhập cả tên đăng nhập và mật khẩu', () => {
+  it('Verify that login without entering both username and password.', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#submit-btn').click()
     cy.wait(2000)
@@ -35,7 +35,7 @@ describe('Verify validation text', () => {
     cy.wait(2000)
   })
 
-  it('Nhập sai định dạng tên đăng nhập', () => {
+  it('Verify that login with username in the invalid email format.', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('text_user')
     cy.wait(2000)
@@ -53,7 +53,7 @@ describe('Verify error message', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
   })
   
-  it('Sai tên đăng nhập nhưng đúng mật khẩu', () => {
+  it('Verify that login with the invalid username and valid password.', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('text_user@gmail.com')
     cy.wait(2000)
@@ -65,7 +65,7 @@ describe('Verify error message', () => {
     cy.wait(2000)
   })
 
-  it('Đúng tên đăng nhập nhưng sai mật khẩu', () => {
+  it('Verify that login with the valid username and invalid password.', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('chstag11111@getnada.com')
     cy.wait(2000)
@@ -84,7 +84,7 @@ describe('Verify Sign in successfuly', () => {
 	  cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
   })
   
-  it('Đăng nhập thành công với user Administrator', () => {
+  it('Verify that Login is successful with administrator account', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('admin_balan@getnada.com')
     cy.wait(2000)
@@ -102,7 +102,7 @@ describe('Verify Sign in successfuly', () => {
     cy.get('#menu-sidebar > :nth-child(7)').contains('Quản lý cửa hàng')
   })
 
-  it('Đăng nhập thành công với user ĐẠI DIỆN CỬA HÀNG', () => {
+  it('Verify that Login is successful with store owner account', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('chstag11111@getnada.com')
     cy.wait(2000)
@@ -120,7 +120,7 @@ describe('Verify Sign in successfuly', () => {
     cy.get('#menu-sidebar > :nth-child(8)').contains('Quản lý NCC')
   })
 
-  it('Đăng nhập thành công với user NCC', () => {
+  it('Verify that Login is successful with supplier account', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('nccstag11111@getnada.com')
     cy.wait(2000)
@@ -138,13 +138,13 @@ describe('Verify Sign in successfuly', () => {
   })
 })
 
-describe('Verify navigate to Quên mật khẩu page', () => {
+describe('Verify navigate to Forgot password page', () => {
   
   beforeEach(()=>{
 	  cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
   })
   
-  it('Kiểm tra chức năng quên mật khẩu', () => {
+  it('Verification CAN navigate to the "Forgot Password" page from the link on the Login page', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#reset-pass-link').click()
     cy.wait(2000)
@@ -159,7 +159,7 @@ describe('Verify displays the password', () => {
 	  cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
   })
   
-  it('Kiểm tra chức năng hiện mật khẩu', () => {
+  it('Password verification is displayed when clicking the "Eye" icon in the Password field', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('text_user@gmail.com')
     cy.wait(2000)
@@ -176,7 +176,7 @@ describe('Verify refresh page', () => {
   beforeEach(()=>{
 	  cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
   })
-  it('Reload page', () => {
+  it('Verify entered data not showing when Refresh button is clicked', () => {
     cy.visit('http://stag.balance.ari.com.vn/#/auth/login')
     cy.get('#email').type('text_user@gmail.com')
     cy.wait(2000)
